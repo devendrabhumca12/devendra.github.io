@@ -5,7 +5,7 @@ import { useWebglSupported } from '../../hooks/useWebglSupported'
 
 const HeroCanvas = lazy(() => import('../three/HeroCanvas').then((m) => ({ default: m.HeroCanvas })))
 
-const TECH = ['Swift', 'SwiftUI', 'iOS Architecture', 'Core ML', 'React Native', 'Agentic AI']
+const TECH = ['Swift', 'SwiftUI', 'iOS Architecture', 'Concurrency', 'AI-Assisted Development']
 
 export function Hero() {
   const reduceMotion = usePrefersReducedMotion()
@@ -24,14 +24,20 @@ export function Hero() {
       )}
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 pt-24">
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-4 text-sm font-medium tracking-widest text-accent-400 uppercase"
+          className="mb-4 flex flex-wrap items-center gap-3"
         >
-          Staff / Senior iOS Engineer &middot; Mobile Architect
-        </motion.p>
+          <p className="text-sm font-medium tracking-widest text-accent-400 uppercase">
+            Staff iOS Engineer &middot; Mobile Architect
+          </p>
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-graphite-600 px-3 py-0.5 text-xs text-mist-300">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            Open to opportunities
+          </span>
+        </motion.div>
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -44,10 +50,18 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-6 max-w-xl text-lg text-mist-300"
+          className="mt-6 max-w-xl text-lg font-medium text-mist-100"
         >
-          11+ years engineering mobile experiences that scale. Positioning statement pending —
-          to be refined once resume/LinkedIn details are confirmed.
+          Engineering Mobile Experiences That Scale.
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.25 }}
+          className="mt-3 max-w-xl text-base text-mist-300"
+        >
+          10+ years building Swift/SwiftUI systems for enterprise banking, IoT, and consumer
+          apps — now extending that with on-device AI and agentic development.
         </motion.p>
 
         <motion.div

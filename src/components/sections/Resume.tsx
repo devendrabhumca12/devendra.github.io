@@ -11,8 +11,8 @@ export function Resume() {
         Download Resume (PDF)
       </a>
       <p className="mt-4 text-sm text-mist-400">
-        Placeholder link — drop the real PDF at <code>public/resume.pdf</code> to activate; the
-        URL stays the same on future updates.
+        To update later, replace <code>public/resume.pdf</code> with a new file of the same
+        name — the download link and URL stay the same.
       </p>
     </SectionShell>
   )
