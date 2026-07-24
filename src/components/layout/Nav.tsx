@@ -1,3 +1,5 @@
+import { announceResumeDownload } from '../../lib/resumeDownload'
+
 const LINKS = [
   { href: '#about', label: 'About' },
   { href: '#career', label: 'Career' },
@@ -24,7 +26,9 @@ export function Nav() {
           ))}
         </ul>
         <a
-          href="#resume"
+          href="/resume.pdf"
+          download
+          onClick={announceResumeDownload}
           className="rounded-full border border-graphite-600 px-4 py-1.5 text-sm text-mist-100 transition-colors hover:border-accent-500 hover:text-accent-400"
         >
           Resume

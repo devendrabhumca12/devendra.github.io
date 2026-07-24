@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react'
 import { motion } from 'framer-motion'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { useWebglSupported } from '../../hooks/useWebglSupported'
+import { announceResumeDownload } from '../../lib/resumeDownload'
 
 const HeroCanvas = lazy(() => import('../three/HeroCanvas').then((m) => ({ default: m.HeroCanvas })))
 
@@ -16,14 +17,15 @@ export function Hero() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(76,141,255,0.12),_transparent_60%)]" />
 
       {!reduceMotion && webglSupported && (
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-y-0 right-0 z-0 hidden w-1/2 md:block">
+          <div className="absolute top-1/2 left-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,_rgba(76,141,255,0.22),_transparent_70%)] blur-2xl" />
           <Suspense fallback={null}>
             <HeroCanvas />
           </Suspense>
         </div>
       )}
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-24">
+      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-24 md:pr-[45%]">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -77,7 +79,9 @@ export function Hero() {
             Explore My Work
           </a>
           <a
-            href="#resume"
+            href="/resume.pdf"
+            download
+            onClick={announceResumeDownload}
             className="rounded-full border border-graphite-600 px-6 py-3 text-sm font-medium text-mist-100 transition-colors hover:border-accent-500"
           >
             Resume

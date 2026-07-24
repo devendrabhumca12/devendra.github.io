@@ -1,5 +1,12 @@
+import { Suspense, lazy } from 'react'
 import { motion } from 'framer-motion'
 import { SectionShell } from '../layout/SectionShell'
+import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import { useWebglSupported } from '../../hooks/useWebglSupported'
+
+const FormEasyCanvas = lazy(() =>
+  import('../three/FormEasyCanvas').then((m) => ({ default: m.FormEasyCanvas })),
+)
 
 const STAGES = [
   {
@@ -50,6 +57,10 @@ const OTHER_STUDIES = [
 ]
 
 export function CaseStudies() {
+  const reduceMotion = usePrefersReducedMotion()
+  const webglSupported = useWebglSupported()
+  const show3D = !reduceMotion && webglSupported
+
   return (
     <SectionShell
       id="case-studies"
@@ -69,33 +80,43 @@ export function CaseStudies() {
           </a>
         </div>
 
-        <div className="mb-8 grid grid-cols-3 gap-4">
-          {SCREENSHOTS.map((shot) => (
-            <img
-              key={shot.src}
-              src={shot.src}
-              alt={shot.alt}
-              loading="lazy"
-              className="rounded-xl border border-graphite-700"
-            />
-          ))}
-        </div>
+        <div className="mb-10 grid gap-8 lg:grid-cols-[280px_1fr] lg:items-center">
+          {show3D ? (
+            <div className="relative mx-auto h-[320px] w-[280px]">
+              <Suspense fallback={null}>
+                <FormEasyCanvas />
+              </Suspense>
+            </div>
+          ) : (
+            <div className="grid grid-cols-3 gap-3 lg:grid-cols-1">
+              {SCREENSHOTS.map((shot) => (
+                <img
+                  key={shot.src}
+                  src={shot.src}
+                  alt={shot.alt}
+                  loading="lazy"
+                  className="rounded-xl border border-graphite-700"
+                />
+              ))}
+            </div>
+          )}
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {STAGES.map((stage, i) => (
-            <motion.div
-              key={stage.label}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.06 }}
-            >
-              <p className="mb-1 text-xs font-medium tracking-widest text-accent-400 uppercase">
-                {stage.label}
-              </p>
-              <p className="text-sm text-mist-300">{stage.body}</p>
-            </motion.div>
-          ))}
+          <div className="grid gap-6 sm:grid-cols-2">
+            {STAGES.map((stage, i) => (
+              <motion.div
+                key={stage.label}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.06 }}
+              >
+                <p className="mb-1 text-xs font-medium tracking-widest text-accent-400 uppercase">
+                  {stage.label}
+                </p>
+                <p className="text-sm text-mist-300">{stage.body}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
 

@@ -1,4 +1,5 @@
 import { SectionShell } from '../layout/SectionShell'
+import { announceResumeDownload } from '../../lib/resumeDownload'
 
 export function Resume() {
   return (
@@ -6,6 +7,7 @@ export function Resume() {
       <a
         href="/resume.pdf"
         download
+        onClick={announceResumeDownload}
         className="inline-flex rounded-full bg-accent-500 px-6 py-3 text-sm font-medium text-graphite-950 transition-transform hover:scale-[1.03]"
       >
         Download Resume (PDF)
