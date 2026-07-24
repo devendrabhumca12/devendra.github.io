@@ -14,6 +14,10 @@ const PILLARS = [
     title: 'AI-assisted, not AI-replaced',
     body: 'Cursor, GitHub Copilot, and Claude sped into daily workflow with prompt engineering — used to raise code quality and ship faster, never to skip understanding the system.',
   },
+  {
+    title: 'Always learning',
+    body: 'GenAI and MCP-certified, a hackathon team lead, and currently exploring React Native and visionOS — staying a hands-on builder, not just an architect on paper.',
+  },
 ]
 
 export function About() {

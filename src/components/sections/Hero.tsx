@@ -6,7 +6,7 @@ import { announceResumeDownload } from '../../lib/resumeDownload'
 
 const HeroCanvas = lazy(() => import('../three/HeroCanvas').then((m) => ({ default: m.HeroCanvas })))
 
-const TECH = ['Swift', 'SwiftUI', 'iOS Architecture', 'Concurrency', 'AI-Assisted Development']
+const TECH = ['Swift', 'SwiftUI', 'SwiftData', 'MVVM / MVVM-C', 'AI-Assisted Coding']
 
 export function Hero() {
   const reduceMotion = usePrefersReducedMotion()
@@ -63,7 +63,7 @@ export function Hero() {
           className="mt-3 max-w-xl text-base text-mist-300"
         >
           10+ years building Swift/SwiftUI systems for enterprise banking, IoT, and consumer
-          apps — now extending that with on-device AI and agentic development.
+          apps — with growing depth in on-device AI, SwiftData, and AI-assisted engineering.
         </motion.p>
 
         <motion.div

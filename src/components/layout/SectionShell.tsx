@@ -11,7 +11,10 @@ interface SectionShellProps {
 
 export function SectionShell({ id, eyebrow, title, pendingNote, children }: SectionShellProps) {
   return (
-    <section id={id} className="mx-auto max-w-5xl px-6 py-28 sm:py-36">
+    <section
+      id={id}
+      className="mx-auto max-w-5xl border-t border-graphite-800/60 px-6 py-16 sm:py-24"
+    >
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}

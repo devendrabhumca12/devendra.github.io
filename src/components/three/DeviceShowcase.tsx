@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { RoundedBox, useTexture } from '@react-three/drei'
 import type { Group, Mesh, MeshStandardMaterial } from 'three'
+import { getSheenTexture, getVignetteTexture } from './screenOverlayTextures'
 
 interface DeviceShowcaseProps {
   images: string[]
@@ -80,9 +81,19 @@ export function DeviceShowcase({
         <meshStandardMaterial map={current} roughness={0.5} transparent opacity={0} />
       </mesh>
 
+      <mesh position={[0, 0, 0.0775]}>
+        <planeGeometry args={[1.24, 2.68]} />
+        <meshBasicMaterial map={getVignetteTexture()} transparent depthWrite={false} />
+      </mesh>
+
       <mesh position={[0, 1.27, 0.078]} rotation={[0, 0, Math.PI / 2]}>
         <capsuleGeometry args={[0.045, 0.22, 4, 8]} />
         <meshStandardMaterial color="#050506" roughness={0.6} />
+      </mesh>
+
+      <mesh position={[0, 0, 0.079]}>
+        <planeGeometry args={[1.24, 2.68]} />
+        <meshBasicMaterial map={getSheenTexture()} transparent depthWrite={false} />
       </mesh>
     </group>
   )

@@ -7,7 +7,6 @@ import { Universe } from './components/sections/Universe'
 import { FeaturedWork } from './components/sections/FeaturedWork'
 import { CaseStudies } from './components/sections/CaseStudies'
 import { Achievements } from './components/sections/Achievements'
-import { Resume } from './components/sections/Resume'
 import { Contact } from './components/sections/Contact'
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
         <FeaturedWork />
         <CaseStudies />
         <Achievements />
-        <Resume />
         <Contact />
       </main>
       <ResumeToast />

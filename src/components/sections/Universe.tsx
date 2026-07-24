@@ -1,6 +1,14 @@
 import { SectionShell } from '../layout/SectionShell'
 
-const CORE_NODES = ['Swift', 'SwiftUI', 'UIKit', 'Objective-C', 'Architecture', 'Concurrency']
+const CORE_NODES = [
+  'Swift',
+  'SwiftUI',
+  'SwiftData',
+  'UIKit',
+  'Objective-C',
+  'MVVM / MVVM-C',
+  'Concurrency',
+]
 const EXPLORATION_NODES = ['On-device AI', 'MultipeerConnectivity', 'React Native', 'visionOS']
 
 const STARS = [

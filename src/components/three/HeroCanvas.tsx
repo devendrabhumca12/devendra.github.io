@@ -27,9 +27,14 @@ export function HeroCanvas() {
       <Sparkles count={60} scale={[6, 5, 3]} size={2} speed={0.15} opacity={0.4} color="#6ea3ff" />
       <Suspense fallback={null}>
         <DeviceShowcase
-          images={['/case-studies/formeasy/home.webp']}
+          images={[
+            '/case-studies/formeasy/home.webp',
+            '/case-studies/formeasy/requirements-photo.webp',
+            '/case-studies/formeasy/result-ready.webp',
+          ]}
           reduceMotion={false}
           followPointer
+          cycleInterval={3200}
         />
         <ContactShadows
           position={[0, -1.55, 0]}

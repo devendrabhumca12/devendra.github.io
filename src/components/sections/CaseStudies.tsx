@@ -41,7 +41,7 @@ const SCREENSHOTS = [
   { src: '/case-studies/formeasy/result-ready.webp', alt: 'FormEasy result screen, ready to upload' },
 ]
 
-const OTHER_STUDIES = [
+const EXPLORATIONS = [
   {
     name: 'FindKeep',
     summary:
@@ -49,10 +49,39 @@ const OTHER_STUDIES = [
     href: 'https://github.com/devendrabhumca12/FindKeep',
   },
   {
+    name: 'MedsPlain',
+    summary:
+      'Scans a medicine label and turns dense dosage text into a plain instruction card using Vision OCR and Apple Foundation Models — no cloud AI, no backend.',
+    href: 'https://github.com/devendrabhumca12/MedsPlain',
+  },
+  {
+    name: 'ActionBrief',
+    summary:
+      'Converts messy notes into a structured action checklist using on-device Apple Foundation Models, with a local NaturalLanguage fallback when they’re unavailable.',
+    href: 'https://github.com/devendrabhumca12/ActionBrief',
+  },
+  {
     name: 'Multipeer-ChatApp',
     summary:
       'A Swift/SwiftUI framework for exchanging text and images directly between iOS devices over MultipeerConnectivity, with Core Data-backed message persistence.',
     href: 'https://github.com/devendrabhumca12/Multipeer-ChatApp',
+  },
+]
+
+const LIBRARIES = [
+  {
+    name: 'NetworkManager',
+    stars: 13,
+    summary: 'A lightweight Reachability/internet-connection library written in SwiftUI.',
+    topics: ['swift', 'swiftui', 'reachability', 'connectivity', 'network-status'],
+    href: 'https://github.com/devendrabhumca12/NetworkManager',
+  },
+  {
+    name: 'CustomAlertView',
+    stars: 19,
+    summary: 'A customizable, reusable alert view for iOS apps written in SwiftUI.',
+    topics: ['swift', 'swiftui', 'uicomponents', 'reusable', 'dialogs'],
+    href: 'https://github.com/devendrabhumca12/CustomAlertView',
   },
 ]
 
@@ -64,9 +93,18 @@ export function CaseStudies() {
   return (
     <SectionShell
       id="case-studies"
-      eyebrow="Engineering Case Studies"
-      title="Problem → Architecture → Result"
+      eyebrow="Engineering Depth"
+      title="Beyond Shipping Features"
     >
+      <p className="-mt-4 mb-10 max-w-2xl text-mist-400">
+        A Staff Engineer's job isn't just delivering client features — it's making sound
+        architecture calls, exploring where the platform is heading, and building tools other
+        engineers rely on. These three sections show each of those.
+      </p>
+
+      <p className="mb-4 text-xs font-medium tracking-widest text-mist-400 uppercase">
+        Flagship case study — Problem → Architecture → Result
+      </p>
       <div className="rounded-3xl border border-graphite-700 bg-graphite-900/50 p-8">
         <div className="mb-8 flex flex-wrap items-baseline justify-between gap-2">
           <h3 className="text-xl font-medium text-mist-100">FormEasy</h3>
@@ -120,8 +158,11 @@ export function CaseStudies() {
         </div>
       </div>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        {OTHER_STUDIES.map((study) => (
+      <p className="mt-14 mb-4 text-xs font-medium tracking-widest text-mist-400 uppercase">
+        On-device AI &amp; systems explorations
+      </p>
+      <div className="grid gap-4 sm:grid-cols-2">
+        {EXPLORATIONS.map((study) => (
           <a
             key={study.name}
             href={study.href}
@@ -131,6 +172,42 @@ export function CaseStudies() {
           >
             <h3 className="mb-1 text-base font-medium text-mist-100">{study.name}</h3>
             <p className="text-sm text-mist-400">{study.summary}</p>
+          </a>
+        ))}
+      </div>
+
+      <p className="mt-14 mb-4 text-xs font-medium tracking-widest text-mist-400 uppercase">
+        Open-source libraries — tools other engineers use
+      </p>
+      <div className="grid gap-4 sm:grid-cols-2">
+        {LIBRARIES.map((lib) => (
+          <a
+            key={lib.name}
+            href={lib.href}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-2xl border border-graphite-700 bg-graphite-900/40 p-6 transition-colors hover:border-accent-500/50"
+          >
+            <div className="mb-1 flex items-center justify-between gap-2">
+              <h3 className="text-base font-medium text-mist-100">{lib.name}</h3>
+              <span className="inline-flex items-center gap-1 text-xs text-mist-400">
+                <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor" aria-hidden>
+                  <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.79L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z" />
+                </svg>
+                {lib.stars}
+              </span>
+            </div>
+            <p className="mb-3 text-sm text-mist-400">{lib.summary}</p>
+            <div className="flex flex-wrap gap-1.5">
+              {lib.topics.map((topic) => (
+                <span
+                  key={topic}
+                  className="rounded-full border border-graphite-600 px-2.5 py-0.5 text-[11px] text-mist-400"
+                >
+                  {topic}
+                </span>
+              ))}
+            </div>
           </a>
         ))}
       </div>

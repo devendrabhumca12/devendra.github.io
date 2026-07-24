@@ -10,6 +10,7 @@ const PROJECTS = [
       'Emirates NBD’s mobile banking app covering 150+ services — accounts, cards, transfers, and investments.',
     contributions: [
       'Designed and built reusable components for the Payments and Lending modules.',
+      'Participated in code reviews to keep shared components consistent across squads.',
     ],
     tech: ['Swift', 'SwiftUI', 'Modular Architecture'],
     links: [{ label: 'App Store', href: 'https://apps.apple.com/ae/app/enbd-x/id1497518128' }],
@@ -20,7 +21,10 @@ const PROJECTS = [
     category: 'Entertainment',
     description:
       'A guest-entertainment app for weddings — photos, event details, dress code, video reels, and important documents in one place.',
-    contributions: ['Built the full app from scratch through to its live App Store release.'],
+    contributions: [
+      'Built the full app from scratch through to its live App Store release.',
+      'Owned architecture, feature development, testing, and release management solo.',
+    ],
     tech: ['Swift', 'SwiftUI'],
     links: [
       { label: 'App Store', href: 'https://apps.apple.com/us/app/wedding-vows-app/id1598724041' },
@@ -35,6 +39,7 @@ const PROJECTS = [
     contributions: [
       'Owned the onboarding flow for both apps.',
       'Worked on security features and remote network management.',
+      'Contributed to bug fixing and stability improvements across releases.',
     ],
     tech: ['Swift', 'SwiftUI', 'REST APIs'],
     links: [

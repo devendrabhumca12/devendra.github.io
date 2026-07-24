@@ -7,14 +7,19 @@ const ROLES = [
     company: 'Mobulous Technologies',
     location: 'Noida, India',
     title: 'Software Engineer – iOS',
-    note: 'End-to-end App Store delivery across Objective-C and Swift projects; integrated third-party Maps, analytics, and payment SDKs.',
+    note: 'Owned complete iOS app delivery — from development through App Store release — working directly with clients and stakeholders across Objective-C and Swift projects.',
+    bullets: ['Integrated and maintained third-party SDKs for maps, analytics, and payments'],
   },
   {
     period: '09/2017 – 08/2019',
     company: 'VVDN Technologies',
     location: 'Noida, India',
     title: 'Senior Software Engineer – iOS',
-    note: 'End-to-end features in Swift/SwiftUI with modular architecture; owned production releases, bug fixing, and stability.',
+    note: 'Delivered end-to-end iOS features in Swift/SwiftUI with modular architecture, owning deployment and production releases.',
+    bullets: [
+      'Drove application stability through bug fixing and production issue resolution',
+      'Maintained code quality through code reviews and clean coding practices',
+    ],
     highlight: '"Gems of the Year" 2018–19',
   },
   {
@@ -22,7 +27,8 @@ const ROLES = [
     company: 'Altran (now Capgemini Engineering)',
     location: 'Gurugram, India',
     title: 'Senior Software Engineer – iOS',
-    note: 'Shifted focus to app architecture, concurrency, and performance optimization, with CI/CD and unit testing built into the workflow.',
+    note: 'Shifted focus toward app architecture, performance optimization, and concurrency handling, with CI/CD and unit testing built into daily practice.',
+    bullets: ['Delivered stable, production-ready iOS applications following consistent coding standards'],
     highlight: '2× "WOW Individual Excellence"',
   },
   {
@@ -30,7 +36,11 @@ const ROLES = [
     company: 'Nagarro Software',
     location: 'Noida, India',
     title: 'Staff Engineer – iOS',
-    note: 'Owns reusable, scalable technical solutions across multiple projects; partners with product, backend, and QA; mentors engineers on iOS best practices and modern workflows — including AI-assisted development.',
+    note: 'Own reusable, scalable technical solutions across multiple projects, partnering with product owners, backend teams, QA, and designers to improve release efficiency.',
+    bullets: [
+      'Mentor engineers on iOS best practices, debugging, performance tuning, and modern workflows',
+      'Bring AI-assisted development (Cursor, Copilot, Claude) into day-to-day engineering',
+    ],
   },
 ]
 
@@ -54,8 +64,13 @@ export function Career() {
             </h3>
             <p className="text-sm text-mist-400">{role.location}</p>
             <p className="mt-2 max-w-2xl text-mist-300">{role.note}</p>
+            <ul className="mt-2 max-w-2xl list-disc space-y-1 pl-5 text-sm text-mist-400 marker:text-accent-400">
+              {role.bullets.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
             {role.highlight && (
-              <p className="mt-2 inline-block rounded-full border border-graphite-600 px-3 py-1 text-xs text-accent-400">
+              <p className="mt-3 inline-block rounded-full border border-graphite-600 px-3 py-1 text-xs text-accent-400">
                 {role.highlight}
               </p>
             )}
