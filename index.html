@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -7,9 +7,23 @@
     <meta name="theme-color" content="#0a0a0c" />
     <meta
       name="description"
-      content="Devendra Agnihotri — Staff/Senior iOS Engineer and Mobile Architect with 11+ years of experience building Swift, SwiftUI, and cross-platform mobile experiences."
+      content="Devendra Agnihotri — Staff/Senior iOS Engineer and Mobile Architect with 10+ years of experience building Swift, SwiftUI, and cross-platform mobile experiences."
     />
     <title>Devendra Agnihotri — iOS Engineer &amp; Mobile Architect</title>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme')
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark'
+          document.documentElement.dataset.theme = theme
+        } catch (e) {}
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

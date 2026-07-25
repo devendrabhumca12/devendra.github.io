@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { SectionShell } from '../layout/SectionShell'
+import { ProfilePhoto } from '../layout/ProfilePhoto'
 
 const PILLARS = [
   {
@@ -23,13 +24,14 @@ const PILLARS = [
 export function About() {
   return (
     <SectionShell id="about" eyebrow="Engineering Philosophy" title="About">
-      <div className="grid gap-10 sm:grid-cols-[1.1fr_1fr]">
+      <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-start sm:gap-10">
+        <ProfilePhoto />
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-lg leading-relaxed text-mist-300"
+          className="text-center text-lg leading-relaxed text-mist-300 sm:text-left"
         >
           I'm a Staff iOS Engineer at Nagarro Software with 10+ years across Swift, SwiftUI,
           and Objective-C, specializing in app architecture, performance optimization, and
@@ -37,20 +39,20 @@ export function About() {
           enterprise banking super-app, and everything in between — while mentoring engineers
           on iOS best practices, debugging, and modern development workflows along the way.
         </motion.p>
-        <div className="grid gap-6">
-          {PILLARS.map((pillar, i) => (
-            <motion.div
-              key={pillar.title}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-            >
-              <h3 className="mb-1 text-base font-medium text-mist-100">{pillar.title}</h3>
-              <p className="text-sm text-mist-400">{pillar.body}</p>
-            </motion.div>
-          ))}
-        </div>
+      </div>
+      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {PILLARS.map((pillar, i) => (
+          <motion.div
+            key={pillar.title}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.1 }}
+          >
+            <h3 className="mb-1 text-base font-medium text-mist-100">{pillar.title}</h3>
+            <p className="text-sm text-mist-400">{pillar.body}</p>
+          </motion.div>
+        ))}
       </div>
     </SectionShell>
   )

@@ -1,4 +1,5 @@
 import { announceResumeDownload } from '../../lib/resumeDownload'
+import { ThemeToggle } from './ThemeToggle'
 
 const LINKS = [
   { href: '#about', label: 'About' },
@@ -25,14 +26,17 @@ export function Nav() {
             </li>
           ))}
         </ul>
-        <a
-          href="/resume.pdf"
-          download
-          onClick={announceResumeDownload}
-          className="rounded-full border border-graphite-600 px-4 py-1.5 text-sm text-mist-100 transition-colors hover:border-accent-500 hover:text-accent-400"
-        >
-          Resume
-        </a>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <a
+            href="/resume.pdf"
+            download
+            onClick={announceResumeDownload}
+            className="rounded-full border border-graphite-600 px-4 py-1.5 text-sm text-mist-100 transition-colors hover:border-accent-500 hover:text-accent-400"
+          >
+            Resume
+          </a>
+        </div>
       </nav>
     </header>
   )

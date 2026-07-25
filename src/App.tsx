@@ -3,10 +3,12 @@ import { ResumeToast } from './components/layout/ResumeToast'
 import { Hero } from './components/sections/Hero'
 import { About } from './components/sections/About'
 import { Career } from './components/sections/Career'
+import { Education } from './components/sections/Education'
 import { Universe } from './components/sections/Universe'
 import { FeaturedWork } from './components/sections/FeaturedWork'
 import { CaseStudies } from './components/sections/CaseStudies'
 import { Achievements } from './components/sections/Achievements'
+import { Testimonials } from './components/sections/Testimonials'
 import { Contact } from './components/sections/Contact'
 
 function App() {
@@ -19,10 +21,12 @@ function App() {
         <Hero />
         <About />
         <Career />
+        <Education />
         <Universe />
         <FeaturedWork />
         <CaseStudies />
         <Achievements />
+        <Testimonials />
         <Contact />
       </main>
       <ResumeToast />
