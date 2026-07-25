@@ -1,0 +1,24 @@
+name = "devendra-portfolio"
+type = "javascript"
+account_id = ""
+workers_dev = true
+route = ""
+zone_id = ""
+
+[env.production]
+name = "devendra-portfolio-prod"
+route = ""
+zone_id = ""
+
+[build]
+command = "npm run build"
+cwd = "./"
+watch_paths = ["src/**/*.ts", "src/**/*.tsx", "public/**/*"]
+
+[build.upload]
+format = "service-worker"
+main = "./dist"
+
+[env.production.build.upload]
+format = "modules"
+main = "./dist"

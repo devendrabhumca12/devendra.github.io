@@ -30,6 +30,14 @@ function LinkedInIcon() {
   )
 }
 
+function MediumIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+      <path d="M4 6.5a1.5 1.5 0 0 0-.5-1.2L1.6 3v-.3h6.2l4.8 10.5 4.2-10.5H22V3l-1.6 1.5a.5.5 0 0 0-.2.5v12a.5.5 0 0 0 .2.5L22 19v.3h-7.8V19l1.6-1.6c.16-.16.16-.2.16-.5V7.4l-4.6 11.8h-.6L5.7 7.4v7.9c-.04.4.1.8.4 1.1L8 18.9v.3H2v-.3l1.9-2.5c.3-.3.4-.7.36-1.1V6.5Z" />
+    </svg>
+  )
+}
+
 function GitHubIcon() {
   return (
     <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
@@ -57,6 +65,12 @@ const LINKS = [
     value: 'devendrabhumca12',
     href: 'https://github.com/devendrabhumca12',
     icon: GitHubIcon,
+  },
+  {
+    label: 'Medium',
+    value: '@devendra.ios1234',
+    href: 'https://medium.com/@devendra.ios1234',
+    icon: MediumIcon,
   },
 ]
 

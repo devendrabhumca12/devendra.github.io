@@ -5,6 +5,10 @@ const ACHIEVEMENTS = [
   { label: '3× Employee of the Quarter', detail: 'Awarded for excellent performance' },
   { label: '2× WOW Individual Excellence', detail: 'Altran (now Capgemini Engineering)' },
   { label: 'Gems of the Year, 2018–19', detail: 'VVDN Technologies' },
+  {
+    label: 'AIR 63 & AIR 59',
+    detail: 'BHU and UPTU MCA entrance exam ranks',
+  },
   { label: 'Cursor Hackathon — Team Lead', detail: 'Led the team building an event companion app' },
   { label: 'GitHub Copilot Hackathon', detail: 'Contributed using AI-assisted development' },
   {

@@ -10,7 +10,7 @@ export function ResumeToast() {
     const onDownload = () => {
       setVisible(true)
       clearTimeout(timeout)
-      timeout = setTimeout(() => setVisible(false), 5000)
+      timeout = setTimeout(() => setVisible(false), 10000)
     }
     window.addEventListener(RESUME_DOWNLOAD_EVENT, onDownload)
     return () => {
@@ -33,17 +33,12 @@ export function ResumeToast() {
             <p className="text-sm font-medium text-mist-100">Thanks for grabbing my resume.</p>
             <p className="mt-1 text-xs text-mist-400">
               If it's a fit, I'd love to connect —{' '}
-              <a
-                href="https://www.linkedin.com/in/devendra-agnihotri-5b0617a8/"
-                target="_blank"
-                rel="noreferrer"
-                className="text-accent-400 hover:text-accent-500"
-              >
-                LinkedIn
-              </a>{' '}
-              or{' '}
               <a href="mailto:devendra.bhumca12@gmail.com" className="text-accent-400 hover:text-accent-500">
                 email
+              </a>{' '}
+              or{' '}
+              <a href="tel:+918505823517" className="text-accent-400 hover:text-accent-500">
+                phone
               </a>
               .
             </p>

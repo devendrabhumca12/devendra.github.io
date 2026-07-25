@@ -8,6 +8,7 @@ interface Testimonial {
   name: string
   title: string
   context: string
+  avatar: string
 }
 
 // Verbatim (lightly copy-edited for typos/grammar only) from real, verified
@@ -19,6 +20,7 @@ const TESTIMONIALS: Testimonial[] = [
     name: 'Kshitiz Agnihotri',
     title: 'Chief Engineer',
     context: 'Worked together on the same team',
+    avatar: '/avatars/kshitiz.webp',
   },
   {
     quote:
@@ -26,6 +28,7 @@ const TESTIMONIALS: Testimonial[] = [
     name: 'Aman Gupta',
     title: 'Senior Lead iOS Developer, Tech Lead',
     context: 'Worked together at VVDN Technologies',
+    avatar: '/avatars/aman.webp',
   },
   {
     quote:
@@ -33,6 +36,7 @@ const TESTIMONIALS: Testimonial[] = [
     name: 'Jason Pinlac',
     title: 'Senior Software Engineer and iOS Developer',
     context: 'Worked together on the same team',
+    avatar: '/avatars/jason.webp',
   },
   {
     quote:
@@ -40,6 +44,7 @@ const TESTIMONIALS: Testimonial[] = [
     name: 'Punit Chauhan',
     title: 'Sr. Software Engineer',
     context: 'Worked together on the same team',
+    avatar: '/avatars/punit.webp',
   },
   {
     quote:
@@ -47,6 +52,7 @@ const TESTIMONIALS: Testimonial[] = [
     name: 'Yao Zhang',
     title: 'Engineer',
     context: 'Worked together at UKG',
+    avatar: '/avatars/yao.webp',
   },
   {
     quote:
@@ -54,6 +60,7 @@ const TESTIMONIALS: Testimonial[] = [
     name: 'Raveena Rawat',
     title: 'Senior Android Engineer',
     context: 'Worked together on the same team',
+    avatar: '/avatars/raveena.webp',
   },
   {
     quote:
@@ -61,17 +68,8 @@ const TESTIMONIALS: Testimonial[] = [
     name: 'Abhishek Upadhyay',
     title: 'Senior iOS Engineer, Visa',
     context: 'Worked together on the IKEA Home Smart project',
+    avatar: '/avatars/abhishek.webp',
   },
-]
-
-const AVATAR_STYLES = [
-  'bg-accent-500/15 text-accent-400',
-  'bg-purple-500/15 text-purple-400',
-  'bg-teal-500/15 text-teal-400',
-  'bg-amber-500/15 text-amber-400',
-  'bg-rose-500/15 text-rose-400',
-  'bg-sky-500/15 text-sky-400',
-  'bg-emerald-500/15 text-emerald-400',
 ]
 
 function initials(name: string) {
@@ -81,6 +79,27 @@ function initials(name: string) {
     .join('')
     .slice(0, 2)
     .toUpperCase()
+}
+
+function Avatar({ src, name }: { src: string; name: string }) {
+  const [errored, setErrored] = useState(false)
+
+  if (errored) {
+    return (
+      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-500/15 text-sm font-medium text-accent-400">
+        {initials(name)}
+      </span>
+    )
+  }
+
+  return (
+    <img
+      src={src}
+      alt={name}
+      onError={() => setErrored(true)}
+      className="h-12 w-12 shrink-0 rounded-full object-cover"
+    />
+  )
 }
 
 export function Testimonials() {
@@ -133,11 +152,7 @@ export function Testimonials() {
                 {active.quote}
               </blockquote>
               <figcaption className="mt-8 flex items-center gap-4">
-                <span
-                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-sm font-medium ${AVATAR_STYLES[index % AVATAR_STYLES.length]}`}
-                >
-                  {initials(active.name)}
-                </span>
+                <Avatar src={active.avatar} name={active.name} />
                 <div>
                   <p className="text-sm font-medium text-mist-100">{active.name}</p>
                   <p className="text-xs text-mist-400">{active.title}</p>

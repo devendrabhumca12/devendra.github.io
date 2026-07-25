@@ -28,9 +28,10 @@ export function HeroCanvas() {
       <Suspense fallback={null}>
         <DeviceShowcase
           images={[
-            '/case-studies/formeasy/home.webp',
-            '/case-studies/formeasy/requirements-photo.webp',
-            '/case-studies/formeasy/result-ready.webp',
+            '/app-screens/enbdx/1.webp',
+            '/app-screens/weddingvows/1.webp',
+            '/app-screens/ikea/1.webp',
+            '/app-screens/orbi/1.webp',
           ]}
           reduceMotion={false}
           followPointer

@@ -1,4 +1,4 @@
-import { announceResumeDownload } from '../../lib/resumeDownload'
+import { RESUME_FILENAME, announceResumeDownload } from '../../lib/resumeDownload'
 import { ThemeToggle } from './ThemeToggle'
 
 const LINKS = [
@@ -30,7 +30,7 @@ export function Nav() {
           <ThemeToggle />
           <a
             href="/resume.pdf"
-            download
+            download={RESUME_FILENAME}
             onClick={announceResumeDownload}
             className="rounded-full border border-graphite-600 px-4 py-1.5 text-sm text-mist-100 transition-colors hover:border-accent-500 hover:text-accent-400"
           >

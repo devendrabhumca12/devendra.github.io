@@ -2,7 +2,7 @@ import { Suspense, lazy } from 'react'
 import { motion } from 'framer-motion'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { useWebglSupported } from '../../hooks/useWebglSupported'
-import { announceResumeDownload } from '../../lib/resumeDownload'
+import { RESUME_FILENAME, announceResumeDownload } from '../../lib/resumeDownload'
 
 const HeroCanvas = lazy(() => import('../three/HeroCanvas').then((m) => ({ default: m.HeroCanvas })))
 
@@ -80,7 +80,7 @@ export function Hero() {
           </a>
           <a
             href="/resume.pdf"
-            download
+            download={RESUME_FILENAME}
             onClick={announceResumeDownload}
             className="rounded-full border border-graphite-600 px-6 py-3 text-sm font-medium text-mist-100 transition-colors hover:border-accent-500"
           >

@@ -6,7 +6,6 @@ const DEGREES = [
     degree: 'Master in Computer Application (MCA)',
     school: 'Banaras Hindu University (BHU), Varanasi',
     period: '2012 – 2015',
-    note: 'AIR 63 in the BHU MCA entrance exam · AIR 59 in the UPTU MCA entrance exam',
     logo: '/logos/bhu.webp',
   },
   {
@@ -41,7 +40,6 @@ export function Education() {
               </p>
               <h3 className="mt-2 text-base font-medium text-mist-100">{item.degree}</h3>
               <p className="mt-1 text-sm text-mist-400">{item.school}</p>
-              {item.note && <p className="mt-3 text-sm text-mist-300">{item.note}</p>}
             </div>
           </motion.div>
         ))}

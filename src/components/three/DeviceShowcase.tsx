@@ -42,14 +42,24 @@ export function DeviceShowcase({
 
     if (!reduceMotion) {
       if (followPointer) {
-        pointer.current.x = state.pointer.x
-        pointer.current.y = state.pointer.y
+        // Clamp: a pointer event recorded far outside the canvas (e.g. a
+        // click elsewhere on a tall page) can report NDC coordinates well
+        // beyond ±1, which would otherwise spin the device edge-on and
+        // leave it stuck there until the pointer re-enters the canvas.
+        pointer.current.x = Math.max(-1, Math.min(1, state.pointer.x))
+        pointer.current.y = Math.max(-1, Math.min(1, state.pointer.y))
         group.current.rotation.y +=
           (pointer.current.x * 0.5 - group.current.rotation.y) * delta * 2
         group.current.rotation.x +=
           (-pointer.current.y * 0.3 - group.current.rotation.x) * delta * 2
+        // Hard safety clamp on the output itself, independent of how we got
+        // here — the screen must never rotate far enough to go edge-on.
+        group.current.rotation.y = Math.max(-0.5, Math.min(0.5, group.current.rotation.y))
+        group.current.rotation.x = Math.max(-0.3, Math.min(0.3, group.current.rotation.x))
       } else {
-        group.current.rotation.y += autoRotateSpeed * delta
+        // Bounded sway rather than a full spin — a continuous 360° rotation
+        // would periodically turn the screen away from the camera.
+        group.current.rotation.y = Math.sin(state.clock.elapsedTime * autoRotateSpeed) * 0.35
       }
       group.current.position.y = Math.sin(state.clock.elapsedTime * 0.6) * 0.08
     }
