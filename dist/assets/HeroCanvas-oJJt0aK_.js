@@ -1,4 +1,4 @@
-import{o as e,r as t,t as n}from"./index-ByDRBojd.js";import{a as r,c as i,d as a,f as o,i as s,l as c,n as l,o as u,p as d,r as f,s as p,t as m,u as h}from"./DeviceShowcase-FqrlfBTk.js";var g=parseInt(`185`.replace(/\D+/g,``)),_=e(t()),v=class extends h{constructor(){super({uniforms:{time:{value:0},pixelRatio:{value:1}},vertexShader:`
+import{o as e,r as t,t as n}from"./index-COWqpLcI.js";import{a as r,c as i,d as a,f as o,i as s,l as c,n as l,o as u,p as d,r as f,s as p,t as m,u as h}from"./DeviceShowcase-C8P8ifQP.js";var g=parseInt(`185`.replace(/\D+/g,``)),_=e(t()),v=class extends h{constructor(){super({uniforms:{time:{value:0},pixelRatio:{value:1}},vertexShader:`
         uniform float pixelRatio;
         uniform float time;
         attribute float size;  
