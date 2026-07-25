@@ -14,6 +14,7 @@ const PROJECTS = [
     ],
     tech: ['Swift', 'SwiftUI', 'Modular Architecture'],
     links: [{ label: 'App Store', href: 'https://apps.apple.com/ae/app/enbd-x/id1497518128' }],
+    screenshots: ['/app-screens/enbdx/1.webp', '/app-screens/enbdx/2.webp', '/app-screens/enbdx/3.webp'],
   },
   {
     name: 'Wedding Vows App',
@@ -28,6 +29,11 @@ const PROJECTS = [
     tech: ['Swift', 'SwiftUI'],
     links: [
       { label: 'App Store', href: 'https://apps.apple.com/us/app/wedding-vows-app/id1598724041' },
+    ],
+    screenshots: [
+      '/app-screens/weddingvows/1.webp',
+      '/app-screens/weddingvows/2.webp',
+      '/app-screens/weddingvows/3.webp',
     ],
   },
   {
@@ -52,6 +58,12 @@ const PROJECTS = [
         href: 'https://apps.apple.com/in/app/netgear-nighthawk-wifi-app/id1124666597',
       },
     ],
+    screenshots: [
+      '/app-screens/orbi/1.webp',
+      '/app-screens/nighthawk/1.webp',
+      '/app-screens/orbi/2.webp',
+      '/app-screens/nighthawk/2.webp',
+    ],
   },
   {
     name: 'IKEA Home smart',
@@ -71,6 +83,7 @@ const PROJECTS = [
         href: 'https://apps.apple.com/in/app/ikea-home-smart-1/id1195836071',
       },
     ],
+    screenshots: ['/app-screens/ikea/1.webp', '/app-screens/ikea/2.webp', '/app-screens/ikea/3.webp'],
   },
 ]
 

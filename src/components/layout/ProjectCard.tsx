@@ -1,6 +1,11 @@
+import { Suspense, lazy } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import type { MouseEvent } from 'react'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import { useWebglSupported } from '../../hooks/useWebglSupported'
+import { useInView } from '../../hooks/useInView'
+
+const AppCanvas = lazy(() => import('../three/AppCanvas').then((m) => ({ default: m.AppCanvas })))
 
 interface ProjectCardProps {
   name: string
@@ -10,6 +15,7 @@ interface ProjectCardProps {
   contributions: string[]
   tech: string[]
   links: { label: string; href: string }[]
+  screenshots?: string[]
   index: number
 }
 
@@ -21,9 +27,12 @@ export function ProjectCard({
   contributions,
   tech,
   links,
+  screenshots,
   index,
 }: ProjectCardProps) {
   const reduceMotion = usePrefersReducedMotion()
+  const webglSupported = useWebglSupported()
+  const { ref: canvasWrapRef, inView: canvasInView } = useInView<HTMLDivElement>()
   const x = useMotionValue(0.5)
   const y = useMotionValue(0.5)
   const rotateX = useSpring(useTransform(y, [0, 1], [7, -7]), { stiffness: 200, damping: 20 })
@@ -63,6 +72,28 @@ export function ProjectCard({
       }}
       className="relative rounded-3xl border border-graphite-700 bg-graphite-900/50 p-8 [transform-style:preserve-3d]"
     >
+      {screenshots && screenshots.length > 0 && (
+        <div
+          ref={canvasWrapRef}
+          className="relative mb-6 h-64 w-full overflow-hidden rounded-2xl bg-graphite-950/40"
+        >
+          {!reduceMotion && webglSupported ? (
+            canvasInView && (
+              <Suspense fallback={null}>
+                <AppCanvas images={screenshots} />
+              </Suspense>
+            )
+          ) : (
+            <img
+              src={screenshots[0]}
+              alt={`${name} screenshot`}
+              loading="lazy"
+              className="mx-auto h-full w-auto object-contain"
+            />
+          )}
+        </div>
+      )}
+
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h3 className="text-xl font-medium text-mist-100">{name}</h3>
         <span className="text-xs tracking-widest text-mist-400 uppercase">

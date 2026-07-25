@@ -3,13 +3,11 @@ import { Canvas } from '@react-three/fiber'
 import { ContactShadows } from '@react-three/drei'
 import { DeviceShowcase } from './DeviceShowcase'
 
-const SCREENSHOTS = [
-  '/case-studies/formeasy/home.webp',
-  '/case-studies/formeasy/requirements-photo.webp',
-  '/case-studies/formeasy/result-ready.webp',
-]
+interface AppCanvasProps {
+  images: string[]
+}
 
-export function FormEasyCanvas() {
+export function AppCanvas({ images }: AppCanvasProps) {
   const [lost, setLost] = useState(false)
 
   if (lost) return null
@@ -30,15 +28,8 @@ export function FormEasyCanvas() {
       <directionalLight position={[2, 3, 4]} intensity={1.1} />
       <directionalLight position={[-3, -1, -2]} intensity={0.4} color="#4c8dff" />
       <Suspense fallback={null}>
-        <DeviceShowcase images={SCREENSHOTS} reduceMotion={false} cycleInterval={2400} />
-        <ContactShadows
-          position={[0, -1.55, 0]}
-          opacity={0.5}
-          scale={5}
-          blur={2.6}
-          far={2}
-          color="#000814"
-        />
+        <DeviceShowcase images={images} reduceMotion={false} cycleInterval={2800} autoRotateSpeed={0.1} />
+        <ContactShadows position={[0, -1.55, 0]} opacity={0.5} scale={5} blur={2.6} far={2} color="#000814" />
       </Suspense>
     </Canvas>
   )

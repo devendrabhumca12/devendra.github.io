@@ -1,5 +1,7 @@
-import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { SectionShell } from '../layout/SectionShell'
+import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
 interface Testimonial {
   quote: string
@@ -62,39 +64,123 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ]
 
+const AVATAR_STYLES = [
+  'bg-accent-500/15 text-accent-400',
+  'bg-purple-500/15 text-purple-400',
+  'bg-teal-500/15 text-teal-400',
+  'bg-amber-500/15 text-amber-400',
+  'bg-rose-500/15 text-rose-400',
+  'bg-sky-500/15 text-sky-400',
+  'bg-emerald-500/15 text-emerald-400',
+]
+
+function initials(name: string) {
+  return name
+    .split(' ')
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase()
+}
+
 export function Testimonials() {
+  const [index, setIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const reduceMotion = usePrefersReducedMotion()
+
+  useEffect(() => {
+    if (reduceMotion || paused) return
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % TESTIMONIALS.length)
+    }, 6000)
+    return () => clearInterval(id)
+  }, [reduceMotion, paused])
+
+  function go(delta: number) {
+    setIndex((i) => (i + delta + TESTIMONIALS.length) % TESTIMONIALS.length)
+  }
+
+  const active = TESTIMONIALS[index]
+
   return (
     <SectionShell id="testimonials" eyebrow="Feedback" title="What Colleagues Say">
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {TESTIMONIALS.map((item, i) => (
-          <motion.figure
-            key={item.name}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-10%' }}
-            transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-            className="flex flex-col rounded-3xl border border-graphite-700 bg-graphite-900/40 p-7"
-          >
-            <svg
-              viewBox="0 0 32 24"
-              width="28"
-              height="21"
-              fill="currentColor"
-              className="mb-3 text-accent-500/40"
-              aria-hidden
+      <div
+        className="relative mx-auto max-w-3xl"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <svg
+          viewBox="0 0 32 24"
+          width="40"
+          height="30"
+          fill="currentColor"
+          className="mb-4 text-accent-500/30"
+          aria-hidden
+        >
+          <path d="M0 24V14.4C0 9.6 1.2 6 3.6 3.6 6 1.2 9.2 0 13.2 0v4.8c-2.4 0-4.2.6-5.4 1.8C6.6 7.8 6 9.4 6 11.4h5.4V24H0Zm17.4 0V14.4c0-4.8 1.2-8.4 3.6-10.8C23.4 1.2 26.6 0 30.6 0v4.8c-2.4 0-4.2.6-5.4 1.8-1.2 1.2-1.8 2.8-1.8 4.8h5.4V24H17.4Z" />
+        </svg>
+
+        <div className="min-h-[220px] sm:min-h-[160px]">
+          <AnimatePresence mode="wait">
+            <motion.figure
+              key={index}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35 }}
             >
-              <path d="M0 24V14.4C0 9.6 1.2 6 3.6 3.6 6 1.2 9.2 0 13.2 0v4.8c-2.4 0-4.2.6-5.4 1.8C6.6 7.8 6 9.4 6 11.4h5.4V24H0Zm17.4 0V14.4c0-4.8 1.2-8.4 3.6-10.8C23.4 1.2 26.6 0 30.6 0v4.8c-2.4 0-4.2.6-5.4 1.8-1.2 1.2-1.8 2.8-1.8 4.8h5.4V24H17.4Z" />
-            </svg>
-            <blockquote className="flex-1 text-sm leading-relaxed text-mist-300">
-              {item.quote}
-            </blockquote>
-            <figcaption className="mt-6 border-t border-graphite-700 pt-4">
-              <p className="text-sm font-medium text-mist-100">{item.name}</p>
-              <p className="text-xs text-mist-400">{item.title}</p>
-              <p className="mt-1 text-xs text-accent-400">{item.context}</p>
-            </figcaption>
-          </motion.figure>
-        ))}
+              <blockquote className="text-xl leading-relaxed text-mist-100 sm:text-2xl">
+                {active.quote}
+              </blockquote>
+              <figcaption className="mt-8 flex items-center gap-4">
+                <span
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-sm font-medium ${AVATAR_STYLES[index % AVATAR_STYLES.length]}`}
+                >
+                  {initials(active.name)}
+                </span>
+                <div>
+                  <p className="text-sm font-medium text-mist-100">{active.name}</p>
+                  <p className="text-xs text-mist-400">{active.title}</p>
+                  <p className="mt-0.5 text-xs text-accent-400">{active.context}</p>
+                </div>
+              </figcaption>
+            </motion.figure>
+          </AnimatePresence>
+        </div>
+
+        <div className="mt-10 flex items-center justify-between">
+          <div className="flex gap-2">
+            {TESTIMONIALS.map((t, i) => (
+              <button
+                key={t.name}
+                type="button"
+                aria-label={`Show recommendation from ${t.name}`}
+                onClick={() => setIndex(i)}
+                className={`h-1.5 rounded-full transition-all ${
+                  i === index ? 'w-6 bg-accent-500' : 'w-1.5 bg-graphite-600'
+                }`}
+              />
+            ))}
+          </div>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              aria-label="Previous recommendation"
+              onClick={() => go(-1)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-graphite-600 text-mist-300 transition-colors hover:border-accent-500 hover:text-accent-400"
+            >
+              ←
+            </button>
+            <button
+              type="button"
+              aria-label="Next recommendation"
+              onClick={() => go(1)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-graphite-600 text-mist-300 transition-colors hover:border-accent-500 hover:text-accent-400"
+            >
+              →
+            </button>
+          </div>
+        </div>
       </div>
     </SectionShell>
   )

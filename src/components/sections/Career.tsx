@@ -48,7 +48,7 @@ export function Career() {
   return (
     <SectionShell id="career" eyebrow="10+ Years" title="Career Journey">
       <div className="relative space-y-10 border-l border-graphite-600 pl-8">
-        {ROLES.map((role, i) => (
+        {[...ROLES].reverse().map((role, i) => (
           <motion.div
             key={role.company}
             initial={{ opacity: 0, x: -12 }}

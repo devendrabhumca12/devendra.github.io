@@ -4,9 +4,7 @@ import { SectionShell } from '../layout/SectionShell'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { useWebglSupported } from '../../hooks/useWebglSupported'
 
-const FormEasyCanvas = lazy(() =>
-  import('../three/FormEasyCanvas').then((m) => ({ default: m.FormEasyCanvas })),
-)
+const AppCanvas = lazy(() => import('../three/AppCanvas').then((m) => ({ default: m.AppCanvas })))
 
 const STAGES = [
   {
@@ -122,7 +120,7 @@ export function CaseStudies() {
           {show3D ? (
             <div className="relative mx-auto h-[320px] w-[280px]">
               <Suspense fallback={null}>
-                <FormEasyCanvas />
+                <AppCanvas images={SCREENSHOTS.map((s) => s.src)} />
               </Suspense>
             </div>
           ) : (
