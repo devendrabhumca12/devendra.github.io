@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 type Theme = 'light' | 'dark'
 
 function getInitialTheme(): Theme {
+  const stored = localStorage.getItem('theme') as Theme | null
+  if (stored) return stored
   return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'
 }
 
