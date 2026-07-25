@@ -20,12 +20,15 @@ export function ProfilePhoto() {
     >
       <div className="absolute -inset-3 rounded-full bg-[radial-gradient(circle,_rgba(76,141,255,0.25),_transparent_70%)] blur-xl" />
       <div className="relative h-full w-full overflow-hidden rounded-full border border-accent-500/40 bg-graphite-900 shadow-[0_8px_40px_rgba(0,0,0,0.35)]">
-        <img
-          src="/profile.jpg"
-          alt="Devendra Agnihotri"
-          className="h-full w-full object-cover"
-          onError={() => setErrored(true)}
-        />
+        <picture>
+          <source srcSet="/profile.webp" type="image/webp" />
+          <img
+            src="/profile.jpg"
+            alt="Devendra Agnihotri"
+            className="h-full w-full object-cover"
+            onError={() => setErrored(true)}
+          />
+        </picture>
       </div>
     </motion.div>
   )
